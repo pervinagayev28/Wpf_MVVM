@@ -15,8 +15,8 @@ namespace CommandMVVM.ViewModels.PageViewModels;
 
 public class DashboardViewModel : NotificationService
 {
-    private Car? car1;
-    public Car? car { get => car1; set { car1 = value; OnPropertyChanged(); } }
+    private Car? car_;
+    public Car? car { get => car_; set { car_ = value; OnPropertyChanged(); } }
 
     public ObservableCollection<Car> Cars { get; set; }
 
@@ -66,6 +66,7 @@ public class DashboardViewModel : NotificationService
     public void Cancel(object? paramter)
     {
         (paramter as Window)?.Close();
+        car = new();
     }
     #endregion
     #region Save
@@ -74,9 +75,11 @@ public class DashboardViewModel : NotificationService
     {
         Cars.RemoveAt((int)paramter);
         Cars.Insert((int)paramter, car);
+        car = new();
+
 
     }
-    
+
     public bool CanSave(object? parameter)
     {
         return !string.IsNullOrEmpty(car?.Make) &&
@@ -103,7 +106,7 @@ public class DashboardViewModel : NotificationService
         car = Cars[(int)paramter];
         EditView? editView = new EditView();
         editView.btn_save.CommandParameter = paramter;
-        editView!.DataContext = this;/*new EditViewModel(Cars,(int)paramter,ref editView);*/
+        editView!.DataContext = this;
         editView.ShowDialog();
     }
     public bool CanEdit(object? parameter)

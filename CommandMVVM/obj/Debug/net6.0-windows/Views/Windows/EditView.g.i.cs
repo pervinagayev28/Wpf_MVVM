@@ -61,7 +61,7 @@ namespace CommandMVVM.Views.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CommandMVVM;V1.0.0.0;component/views/windows/editview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CommandMVVM;component/views/windows/editview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Windows\EditView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
